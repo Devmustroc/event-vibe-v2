@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import React from "react";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const font = Poppins(
     { subsets: ["latin"],
@@ -9,10 +11,10 @@ const font = Poppins(
 });
 
 export const metadata: Metadata = {
-    title: "Event Vive",
+    title: "Event Vibe",
     description: "Share your events with the world",
     icons: {
-        icon: ''
+        icon: '/assets/images/favicon.svg',
     }
 };
 
@@ -22,8 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={font.variable}>{children}</body>
-    </html>
+      <ClerkProvider>
+            <html lang="en">
+              <body className={font.variable}>{children}</body>
+            </html>
+      </ClerkProvider>
   );
 }
